@@ -40,6 +40,19 @@ app.post("/api/products", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+//update products in the database
+app.put("/api/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Product = await product.findByIdAndUpdate(id, req.body);
+    if (!Product) return res.status(404).json({ message: "product not found" });
+    const updatedProduct = await product.findById(id);
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+});
 mongoose
   .connect(
     "mongodb+srv://Alexandre:ndanyuzwe2@atlascluster.7z2yy0l.mongodb.net/"
