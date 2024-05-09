@@ -53,6 +53,18 @@ app.put("/api/product/:id", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+//delete a product from the database
+app.delete("/api/product/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const Product = await product.findByIdAndDelete(id, req.body);
+    if (!Product) return res.status(404).json({ message: "product not found" });
+    res.status(200).json({ message: "product deleted successfuly" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+});
 mongoose
   .connect(
     "mongodb+srv://Alexandre:ndanyuzwe2@atlascluster.7z2yy0l.mongodb.net/"
