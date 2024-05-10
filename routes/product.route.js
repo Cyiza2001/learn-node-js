@@ -6,7 +6,7 @@ const {
   postProduct,
   deleteProduct,
   putProduct,
-} = require("./controllers/product.controller.js");
+} = require("./controllers/product.controllers.js");
 const router = express.router();
 
 router.get("/", getProducts);

@@ -8,9 +8,9 @@ const app = express();
 app.use(express.json());
 app.use("/api/products", productRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Home Page ya Djibuji");
-});
+// app.get("/", (req, res) => {
+//   res.send("Home Page ya Djibuji");
+// });
 // app.get("/api/products", async (req, res) => {
 //   try {
 //     const products = await product.find();
