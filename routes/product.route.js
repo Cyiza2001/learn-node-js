@@ -1,18 +1,18 @@
 const express = require("express");
-const product = require("./models/product.model.js");
+const authenticateToken = require("../authMiddleWare");
 const {
   getProducts,
   getProduct,
   postProduct,
   deleteProduct,
   putProduct,
-} = require("./controllers/product.controllers.js");
-const router = express.router();
+} = require("../controllers/product.controllers");
+const router = express.Router();
 
-router.get("/", getProducts);
-router.get("/:id", getProduct);
-router.post("/", postProduct);
-router.delete("/:id", deleteProduct);
-router.put("/:id", putProduct);
+router.get("/", authenticateToken, getProducts);
+router.get("/:id", authenticateToken, getProduct);
+router.post("/", authenticateToken, postProduct);
+router.delete("/:id", authenticateToken, deleteProduct);
+router.put("/:id", authenticateToken, putProduct);
 
 module.exports = router;

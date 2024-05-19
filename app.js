@@ -3,10 +3,15 @@ const mongoose = require("mongoose");
 const product = require("./models/product.model.js");
 // const productController = require("./controllers/product.controller.js");
 const productRoutes = require("./routes/product.route.js");
+
 const app = express();
 
 app.use(express.json());
 app.use("/api/products", productRoutes);
+
+// const crypto = require("crypto");
+// const secretKey = crypto.randomBytes(64).toString("hex");
+// console.log(secretKey);
 
 // app.get("/", (req, res) => {
 //   res.send("Home Page ya Djibuji");
