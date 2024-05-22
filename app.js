@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const product = require("./models/product.model.js");
 const productRoutes = require("./routes/product.route.js");
 const authRoutes = require("./routes/auth.route.js");
+const imageRoutes = require("./routes/image.route.js");
 const path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -14,12 +15,12 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-
 const app = express();
 
 app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/user", imageRoutes);
 app.set("view engine", "ejs");
 app.get("/upload", (req, res) => {
   res.render("upload");
@@ -37,4 +38,4 @@ mongoose
       console.log("server is listening on the port 5000...");
     });
   })
-  .catch(() => console.log("not connected!"));
+  .catch((error) => console.log("not connected!", error));
